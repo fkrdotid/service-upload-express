@@ -1,0 +1,9 @@
+
+.vscode/
+.node_modules/
+node_modules/
+.env
+uploads/
+excell/
+package-lock.json
+.env.development

@@ -1,0 +1,21 @@
+# using shell executor
+before_script:
+  - cp .env.sample .env
+
+stages:
+  - build
+  - deploy
+
+docker_build:
+  stage: build
+  script:
+    - docker-compose build
+  only:
+    - develop
+
+docker_deploy:
+  stage: deploy
+  script:
+    - docker-compose up -d
+  only:
+    - develop

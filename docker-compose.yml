@@ -1,0 +1,27 @@
+version: "2"
+services:
+    api:
+        container_name: ${APP_NAME}-api
+        build:
+            context: .
+            args:
+                - NODE_ENV=${NODE_ENV}
+        image: "${APP_NAME}"
+        restart: on-failure
+        environment:
+            - NODE_ENV=${NODE_ENV}
+            - PORT=${PORT}
+            - MSSQL_URL=${DIALECT}://${MSSQL_USERNAME}:${MSSQL_PASSWORD}@db:3306/${MSSQL_DATABASE}
+            - PROJECT_ID=5a866317cac337000f571c2f
+            - JWT_SECRET=5a866317cac337000f571c2f.macbooklocal
+            - DIALECT=${DIALECT}
+            - MSSQL_USERNAME=${MSSQL_USERNAME}
+            - MSSQL_PASSWORD=${MSSQL_PASSWORD}
+            - MSSQL_HOST=db
+            - MSSQL_DATABASE=${MSSQL_DATABASE}
+            - MSSQL_PORT=3306
+            - PROTOSERVER=${PROTOSERVER}
+            - GRPC_PORT=${GRPC_PORT}
+        ports:
+            - "${PORT}:${PORT}"
+            - "${GRPC_PORT}:${GRPC_PORT}"
